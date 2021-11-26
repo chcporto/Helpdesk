@@ -1,5 +1,8 @@
 package com.example.helpDesk.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +33,19 @@ private TecnicoService service;
 	// "ok" Busca feita
 	// "body" No corpo da resposta Retorna o objeto
 	}
+
+    // Implementação de "EndPoint" para buscar todos os "tecnicos"
+    @GetMapping
+    public ResponseEntity<List<TecnicoDTO>> findAll(){
+    	// Vai retornar uma lista de "TecnicoDTO"  
+    	// Sempre que vir uma requisição da url, sem parametro vai executar esse método
+    List<Tecnico> list = service.findAll();
+     // Observação..... Quando indicar o uso do método "service.findAll()" acima, o Spring vai indicar erro pq esse método ainda não existe
+     // Para criar basta clicar na lâmpada vermelha de indicação de erro que ele vai sugerir criar o método"
+     // Em seguida selecionar "create method", será criado o método em..... "TecnicoService"
+     // Ai basta alterar indicando para retornar "repository.findAll()
+     //List<TecnicoDTO> listDTO = list.stream().map(obj -> new tecnicoDTO(obj)).collect(Collectors.toList());
+     List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
+     return ResponseEntity.ok().body(listDTO);
+    }
 }

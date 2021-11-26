@@ -1,5 +1,6 @@
 package com.example.helpDesk.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class TecnicoService {
 
 		// @Autowired
 		// private TecnicoRepository repository;
-		//
-		//
-		//
+	}
+
+	public List<Tecnico> findAll() {
+		return repository.findAll();
 	}
 }
