@@ -29,6 +29,6 @@ public class TecnicoService {
 		// @Autowired
 		// private TecnicoRepository repository;
 		//
-		
+		//
 	}
 }
