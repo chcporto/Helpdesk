@@ -30,5 +30,6 @@ public class TecnicoService {
 		// private TecnicoRepository repository;
 		//
 		//
+		//
 	}
 }
