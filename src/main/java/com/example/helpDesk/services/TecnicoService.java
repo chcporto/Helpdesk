@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.helpDesk.domain.Tecnico;
+import com.example.helpDesk.domain.dtos.TecnicoDTO;
 import com.example.helpDesk.repositories.TecnicoRepository;
 
 import com.example.helpDesk.services.exceptions.ObjectNotFoundException;
@@ -33,5 +34,21 @@ public class TecnicoService {
 
 	public List<Tecnico> findAll() {
 		return repository.findAll();
+	}
+
+	public Tecnico create(TecnicoDTO objDTO) {
+		//
+		// No banco de dados não salvamos um "TecnicoDTO" e sim uma entidade de
+		// "Tecnico" e por isso temos que
+		// Converter as informações de "objDTO" para um novo "Tecnico"
+		// Para isso na classe "Tecnico" precisamos adicionar um construtor "Tecnico"
+		// para isso
+
+		objDTO.setId(null); // Para assegurar que a requisição vai estar com "id" em branco, para se caso na
+							// requisição for passado um "id"
+		Tecnico newObj = new Tecnico(objDTO);
+		return repository.save(newObj); // Como é uma chamada Assincrona, primeiro vai salvar no banco e depois retorna
+										// com um "id"
+		// Feito isso podemos continuar a implementação em "TecnicoResouce"
 	}
 }

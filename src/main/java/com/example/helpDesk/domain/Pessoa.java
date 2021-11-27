@@ -46,7 +46,7 @@ public abstract class Pessoa implements Serializable {
 	
 	public Pessoa() {
 		super();
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.CLIENTE); // Para forçar a toda pessoa criada no sistema, ter ao menos o perfil "CLIENTE"
 	}
 
 	public Pessoa(Integer id, String nome, String cpf, String email, String senha) {
@@ -56,6 +56,7 @@ public abstract class Pessoa implements Serializable {
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -103,7 +104,7 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public void addPerfil(Perfil perfil) {
-		this.perfis.add (perfil.getCodigo()); 
+		this.perfis.add(perfil.getCodigo()); 
 	}
 
 	public LocalDate getDataCriacao() {

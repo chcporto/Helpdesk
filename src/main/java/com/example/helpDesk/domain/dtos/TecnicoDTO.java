@@ -31,7 +31,7 @@ public class TecnicoDTO implements Serializable {
 	//
 	public TecnicoDTO() {
 		super();
-
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	//
@@ -56,6 +56,7 @@ public class TecnicoDTO implements Serializable {
 		this.cpf = obj.getCpf();
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
+		addPerfil(Perfil.CLIENTE);
 		// Devido o "Pefil ser uma lista é necessário tratar
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
@@ -112,22 +113,22 @@ public class TecnicoDTO implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	/*
-	 * Antes da criação da classe "TecnicoDTO" era usando assim --> public
-	 * Set<Integer> getPerfis() { return perfis;
-	 */
+	//
+	// Antes da criação da classe "TecnicoDTO" era usando assim --> public
+	// Set<Integer> getPerfis() { return perfis;
+	//
 
 	public Set<Perfil> getPerfis() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 
 	}
 
-	/*
-	 * Antes da criação da classe "TecnicoDTO" era usando assim --> public void
-	 * setPerfis(Set<Integer> perfis) { this.perfis = perfis; }
-	 */
-	public void addPerfis(Perfil perfis) {
-		this.perfis.add(perfis.getCodigo());
+	//
+	// Antes da criação da classe "TecnicoDTO" era usando assim --> public void
+	// setPerfis(Set<Integer> perfis) { this.perfis = perfis; }
+	//
+	public void addPerfil(Perfil perfil) {
+		this.perfis.add(perfil.getCodigo());
 	}
 
 	public LocalDate getDataCriacao() {
