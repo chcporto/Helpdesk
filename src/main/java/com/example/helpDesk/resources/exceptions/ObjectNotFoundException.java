@@ -1,4 +1,4 @@
-package com.example.helpDesk.services.exceptions;
+package com.example.helpDesk.resources.exceptions;
 public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	public ObjectNotFoundException(String message, Throwable cause) {

@@ -11,8 +11,8 @@ import com.example.helpDesk.domain.Tecnico;
 import com.example.helpDesk.domain.dtos.TecnicoDTO;
 import com.example.helpDesk.repositories.PessoaRepository;
 import com.example.helpDesk.repositories.TecnicoRepository;
-import com.example.helpDesk.services.exceptions.DataIntegrityViolationException;
-import com.example.helpDesk.services.exceptions.ObjectNotFoundException;
+import com.example.helpDesk.resources.exceptions.DataIntegrityViolationException;
+import com.example.helpDesk.resources.exceptions.ObjectNotFoundException;
 
 @Service
 public class TecnicoService {
@@ -48,6 +48,19 @@ public class TecnicoService {
 		// Para isso na classe "Tecnico" precisamos adicionar um construtor "Tecnico"
 		// para isso
 
+/*
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+			validaPorCpfEEmail(objDTO);
+			Tecnico newObj = new Tecnico(objDTO);
+			return repository.save(newObj);
+		}
+*/	 
+		
+		
+		
+		
+		
+		
 		objDTO.setId(null); // Para assegurar que a requisição vai estar com "id" em branco, para se caso na
 							// requisição for passado um "id" colocar null para o Banco criar o "id"
 		validaPorCPFEEmail(objDTO);
@@ -62,7 +75,7 @@ public class TecnicoService {
 	// Um "Tecnico e um Cliente" são pessoas por isso vamos criar no
 	// "PessoaRepository" os métodos para fazer a busca por "CPF e Email"
 	//
-	private void validaPorCPFEEmail(TecnicoDTO objDTO) {
+    private void validaPorCPFEEmail(TecnicoDTO objDTO) {
 		//
 		// Para funcionar preciamos fazer
 		// Injeção do "PessoaRepository" "@Autowired" depois "private PessoaRepository
@@ -97,4 +110,5 @@ public class TecnicoService {
 
 		}
 	}
+
 }

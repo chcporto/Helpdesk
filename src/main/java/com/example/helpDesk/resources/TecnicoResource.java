@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,7 +63,7 @@ private TecnicoService service;
     // E depois será convertido para "Tecnico"
 	//
 	// Agora que o método "create" foi iniciado vamos precisar instanciar um "Tecnico" que será chamado de "newObj"
-	// Ele recebera o método "service.create" que deverá ser criado em "TecnicoService"
+	// Ele recebera o método "service.create" que deverá http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=3274405ser criado em "TecnicoService"
     // Observação..... Quando indicar o uso do método "service.create()" abaixo, o Spring vai indicar erro pq esse método ainda não existe
     // Para criar basta clicar na lâmpada vermelha de indicação de erro que ele vai sugerir criar o método"
     // Em seguida selecionar "create method", será criado o método em..... "TecnicoService"
@@ -69,7 +71,7 @@ private TecnicoService service;
     ///  URI é o mesmo que URL
     //
     @PostMapping
-    public ResponseEntity<TecnicoDTO> create(@RequestBody TecnicoDTO objDTO){
+    public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO){
     Tecnico newObj = service.create(objDTO); 
     //
     // Vamos passar o path da "URL" e pegar o novo "id" e converte para uma "URI"
@@ -78,6 +80,7 @@ private TecnicoService service;
     return ResponseEntity.created(uri).build();
     		
     	
-    }
+    } 		
+    	
         
 }

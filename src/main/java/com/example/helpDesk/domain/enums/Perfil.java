@@ -1,4 +1,4 @@
-package com.example.helpDesk.domain.enums;
+  package com.example.helpDesk.domain.enums;
 
 public enum Perfil {
    ADMIN(0, "ROLE_ADMIN"), CLIENTE(1, "ROLE_CLIENTE"), TECNICO(2,"ROLE_TECNICO");
@@ -20,7 +20,7 @@ public enum Perfil {
 		}
 		for(Perfil x : Perfil.values()){
 			if(cod.equals(x.getCodigo())){
-				return x;
+				return x;    
 			} 
 		}
 		throw new IllegalArgumentException("Perfil inválido!");

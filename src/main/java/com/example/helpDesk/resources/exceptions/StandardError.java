@@ -1,4 +1,4 @@
-package com.example.helpDesk.services.exceptions;
+package com.example.helpDesk.resources.exceptions;
 public class StandardError {
 	private Long timestamp;
 	private Integer status;

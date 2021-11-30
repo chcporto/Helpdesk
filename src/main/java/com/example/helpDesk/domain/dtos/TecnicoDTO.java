@@ -1,10 +1,12 @@
-package com.example.helpDesk.domain.dtos;
+	package com.example.helpDesk.domain.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.NotNull;
 
 import com.example.helpDesk.domain.Tecnico;
 import com.example.helpDesk.domain.enums.Perfil;
@@ -16,9 +18,13 @@ public class TecnicoDTO implements Serializable {
 	// Adicionar os campos que serão retornados no DTO
 	//
 	protected Integer id;
+	@NotNull(message = "O campo NOME é requerido")
 	protected String nome;
+	@NotNull(message = "O campo CPF é requerido")
 	protected String cpf;
+	@NotNull(message = "O campo EMAIL é requerido")
 	protected String email;
+	@NotNull(message = "O campo SENHA é requerido")
 	protected String senha;
 	protected Set<Integer> perfis = new HashSet<>();
 	@JsonFormat(pattern = "dd/MM/yyyy")

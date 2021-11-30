@@ -21,7 +21,8 @@ import javax.persistence.Id;
 import com.example.helpDesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity 
+//  @Entity(name = "TB_PESSOA")  // Forma de usar criando a tabela dando um nome 
+@Entity  // Forma de criar dando o nome da classe para a tabela
 public abstract class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
