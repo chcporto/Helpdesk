@@ -16,6 +16,7 @@ public class StandardError {
 		this.message = message;
 		this.path = path;
 	}
+	/*
 	public Long getTimestamp() {
 		return timestamp;
 	}
@@ -31,4 +32,5 @@ public class StandardError {
 	public String getPath() {
 		return path;
 	}
+	*/
 }

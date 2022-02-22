@@ -3,6 +3,8 @@ package com.example.helpDesk.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,13 @@ import com.example.helpDesk.repositories.TecnicoRepository;
 import com.example.helpDesk.resources.exceptions.DataIntegrityViolationException;
 import com.example.helpDesk.resources.exceptions.ObjectNotFoundException;
 
-@Service
+@Service  // Para poder injetar esse "TecnicoService" no "TecnicoResource"
 public class TecnicoService {
 
 	@Autowired
-	private TecnicoRepository repository;
+	private TecnicoRepository repository;    /// "TecnicoRepository" já tem vários métodos "Save, findById, findAll,, etc...." 
 	@Autowired
-	private PessoaRepository pessoarepository;
+	private PessoaRepository pessoarepository;   
 
 	// findById(Integer id) { // Antes da mudança para tratrar a exceção --> public
 	// Tecnico findById(Integer id) {
@@ -47,20 +49,6 @@ public class TecnicoService {
 		// Converter as informações de "objDTO" para um novo "Tecnico"
 		// Para isso na classe "Tecnico" precisamos adicionar um construtor "Tecnico"
 		// para isso
-
-/*
-		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
-			validaPorCpfEEmail(objDTO);
-			Tecnico newObj = new Tecnico(objDTO);
-			return repository.save(newObj);
-		}
-*/	 
-		
-		
-		
-		
-		
-		
 		objDTO.setId(null); // Para assegurar que a requisição vai estar com "id" em branco, para se caso na
 							// requisição for passado um "id" colocar null para o Banco criar o "id"
 		validaPorCPFEEmail(objDTO);
@@ -70,6 +58,17 @@ public class TecnicoService {
 		// Feito isso podemos continuar a implementação em "TecnicoResouce"
 	}
 
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCPFEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return repository.save(oldObj);
+	}
+
+	
+	
+	
 	//
 	// Criado o método como privado para apenas o "TecnicoService" ter acesso
 	// Um "Tecnico e um Cliente" são pessoas por isso vamos criar no
