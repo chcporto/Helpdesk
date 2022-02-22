@@ -72,7 +72,7 @@ private TecnicoService service;
     //
     ///  URI é o mesmo que URL
     //
-    @PostMapping
+    @PostMapping   //  Segurando a tecla " CTRL " e clicando no "TecnicoDTO" o Spring vai para o "DTO" da classe serve como atalho
     public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO){
     Tecnico newObj = service.create(objDTO); 
     //
