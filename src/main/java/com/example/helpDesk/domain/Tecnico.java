@@ -12,7 +12,9 @@ import com.example.helpDesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+
 public class Tecnico extends Pessoa {
+	
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore   // Usado para proteger o backEnd contra serialização ou seja tras apenas as informações da tabela tecnico
 	              // Impedindo que tb traga as informações das chaves estrageiras 
@@ -20,6 +22,7 @@ public class Tecnico extends Pessoa {
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
+		
 		super();
 		addPerfil(Perfil.CLIENTE);
 	}

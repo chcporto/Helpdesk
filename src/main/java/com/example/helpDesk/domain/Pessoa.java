@@ -32,7 +32,7 @@ public abstract class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	protected Integer id;
 	protected String nome;
-	@CPF
+	@CPF // Faz todas as validações do CPF
 	@Column(unique = true)
 	protected String cpf;
 	

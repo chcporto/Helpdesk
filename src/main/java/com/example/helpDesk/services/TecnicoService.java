@@ -27,7 +27,8 @@ public class TecnicoService {
 	// findById(Integer id) { // Antes da mudança para tratrar a exceção --> public
 	// Tecnico findById(Integer id) {
 	public Tecnico findById(Integer id) { // Antes da criação do tratamento de exceção ---> return obj.orElse(null); //
-											// Se // não encontrar retorna "null"
+		System.out.printf("Passou aqui - Tecnico Service findById\n");									// Se // não encontrar retorna "null"
+
 		Optional<Tecnico> obj = repository.findById(id); // Método "findById" Faz a busca no banco, // Antes da mudança
 															// para tratrar a exceção --> return obj.orElse(null);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado com o ID: " + id));
@@ -43,6 +44,7 @@ public class TecnicoService {
 	}
 
 	public Tecnico create(TecnicoDTO objDTO) {
+		System.out.printf("Passou aqui - Tecnico Service create\n");									// Se // não encontrar retorna "null"
 		//
 		// No banco de dados não salvamos um "TecnicoDTO" e sim uma entidade de
 		// "Tecnico" e por isso temos que
@@ -59,6 +61,7 @@ public class TecnicoService {
 	}
 
 	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		System.out.printf("Passou aqui - Tecnico Service update\n");									// Se // não encontrar retorna "null"
 		objDTO.setId(id);
 		Tecnico oldObj = findById(id);
 		validaPorCPFEEmail(objDTO);
@@ -66,7 +69,13 @@ public class TecnicoService {
 		return repository.save(oldObj);
 	}
 
-	
+	public void delete(Integer id) {
+		Tecnico obj = findById(id);
+		if(obj.getChamados().size()> 0) { 
+		   throw new DataIntegrityViolationException("Tecnico possui ordens de serviço em seu nome e não pode deletado!");
+		}
+			repository.deleteById(id);
+	}
 	
 	
 	//
@@ -109,5 +118,7 @@ public class TecnicoService {
 
 		}
 	}
+
+
 
 }

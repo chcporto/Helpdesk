@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +33,24 @@ private TecnicoService service;
 @GetMapping(value ="/{id}")  //  Vai receber através de uma variável path para as buscas
     // Antes da criação do DTO public ResponseEntity<Tecnico> findById(@PathVariable Integer id){
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){
+	//
+	//
+	// Teste 
+	//
+	//
+	int testador = 0;
+	while(testador <=3) {
+		System.out.printf("Testador = %d\n",testador);
+		testador++;
+		
+	}
+	for(int space = 1; space <=3; space++) {
+		System.out.printf("'\n");
+	}
+
+	for(int contador = 1; contador <=3; contador++) {
+		System.out.printf("Passou em TecnicoResource --> GetMapping = %d\n",contador);
+	}
 	// Médtodo que Representa todas as respostas HTTP como estamos trabalhando com
     // "Tecnico"
 	Tecnico obj= service.findById(id);
@@ -81,10 +99,19 @@ private TecnicoService service;
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();	
     return ResponseEntity.created(uri).build();
     }
-    @PutMapping(value = "/{id")
-    public ResponseEntity<TecnicoDTO> update( @PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDTO){
+    @PutMapping(value ="/{id")
+//    public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDTO){
+  	public ResponseEntity<TecnicoDTO> udpdate(@PathVariable Integer id, @RequestBody TecnicoDTO objDTO){
+    	for(int contador = 1; contador <=10; contador++) {
+    		System.out.printf("Passou em TecnicoResource --> PutMapping = %d\n",contador);
+    	}
     Tecnico obj = service.update(id, objDTO);	 	
      	return ResponseEntity.ok().body(new TecnicoDTO(obj));	
     	
-    }       
+    } 
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<TecnicoDTO> delete(@PathVariable Integer id) {
+		service.delete(id); 
+		return ResponseEntity.noContent().build();
+	}     
 }
