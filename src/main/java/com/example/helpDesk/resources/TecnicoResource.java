@@ -99,7 +99,7 @@ private TecnicoService service;
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();	
     return ResponseEntity.created(uri).build();
     }
-    @PutMapping(value ="/{id")
+    @PutMapping(value ="/{id}")
 //    public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDTO){
   	public ResponseEntity<TecnicoDTO> udpdate(@PathVariable Integer id, @RequestBody TecnicoDTO objDTO){
     	for(int contador = 1; contador <=10; contador++) {
