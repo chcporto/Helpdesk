@@ -6,6 +6,7 @@ import java.util.List;
 //
 // Essa classe vai estender a classe de erro padrão "StantardError"
 //
+
 public class ValidationError extends StandardError{
 	private static final long serialVersionUID = 1L;
 	private List<FieldMessage> errors = new ArrayList<>();
